@@ -1,13 +1,13 @@
-export default function Home() {
+import { supabase } from "@/lib/supabase/client";
+
+export default async function Home() {
+  const { data } = await supabase
+    .from("gyms")
+    .select("*");
+
   return (
-    <main style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100vh",
-      fontFamily: "Arial"
-    }}>
-      <h1>Welcome to Phyxert 🚀</h1>
-    </main>
+    <pre>
+      {JSON.stringify(data, null, 2)}
+    </pre>
   );
 }
